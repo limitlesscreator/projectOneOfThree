@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 
+
 export function Post(props){
+
     const {name, cb,deletePost, id} = props;
 
     return(
