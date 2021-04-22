@@ -3,56 +3,54 @@ import React, {Component} from 'react'
 
 export class MyForm extends Component {
 
-    state = {
-        email: '',
-        subscription: false,
+    constructor() {
+        super();
+        this.state = {
+            card: '',
+            email: ''
+        }
+        this.firstNameRef = React.createRef();
+        this.secondNameRef = React.createRef();
     }
 
-    // validateEmail = () => {
-    //     if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.state.email)) {
-    //         alert('email is not valid')
-    //     }
-    // }
-    handleCheckbox = (event) => {
-        this.setState({[event.target.name]: event.target.checked})
+    componentDidMount() {
+        console.log(this.firstNameRef)
+        this.firstNameRef.current.focus();
     }
+
+
     handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState(() => ({[event.target.name]: event.target.value}), () => {
+            if (this.state.card.length === 16){
+                this.secondNameRef.current.focus();
+            }
+        })
     }
-    handleSubmit = () => {
-        const isValidEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.state.email);
-        const isValidCheckBox = this.state.subscription;
-        if (!isValidEmail) {
-            alert('plese check your email')
-            return;
-        }
-         else if(!isValidCheckBox){
-            alert('you should accept all terms and conditions')
-            return;
-        }
-        this.setState({email: '',subscription: false})
-        alert('thank you for subscription!')
 
-
-    }
-    render()
-    {
-        const {email, subscription} = this.state
+    render() {
+        const {card, email} = this.state
 
         return (
             <div>
-                <div><input type="email" placeholder={'email'} name={'email'} value={email}
-                            onChange={this.handleChange} onBlur={this.validateEmail}/></div>
-                <br/>
-                <div><input type="checkbox" name={'subscription'} checked={subscription}
-                            onChange={this.handleCheckbox}/>I agreew with terms and conditions
+                <div><input type="text"
+                            placeholder={'card'}
+                            name={'card'}
+                            value={card}
+                            onChange={this.handleChange}
+                            ref={this.firstNameRef}
+                />
                 </div>
-                <div>
-                    <button onClick={this.handleSubmit}>Send</button>
+                <br/>
+                <div><input value={email}
+                            type='email'
+                            placeholder={'email'}
+                            name={'email'}
+                            onChange={this.handleChange}
+                            ref={this.secondNameRef}
+                />
                 </div>
             </div>
         )
     }
 
 }
-
