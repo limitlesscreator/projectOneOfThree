@@ -1,4 +1,4 @@
-import s from './Header.module.css'
+import s from './Header.module.sass'
 export function Header(){
     return(
         <header>

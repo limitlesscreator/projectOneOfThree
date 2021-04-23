@@ -1,6 +1,8 @@
 import React from 'react'
-import s from '../Components/Movie.module.css'
+import s from '../Components/Main.module.sass'
 import {Movies} from "../Components/Movies";
+import {Preloader} from "../Components/Preloader";
+
 
 export class Main extends React.Component{
 
@@ -18,9 +20,9 @@ export class Main extends React.Component{
         const {movies} = this.state
 
         return (
-            <div>
+            <div className={s.main}>
                 <div className={s.title}>
-                    {movies.length ? <Movies movies={movies}/> : <h5>Loading...</h5>}
+                    {movies.length ? <Movies movies={movies}/> : <Preloader/>}
 
                 </div>
             </div>
