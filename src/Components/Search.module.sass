@@ -3,7 +3,7 @@
 .search
   border: #4b0082 3px solid
   display: block
-  width: 500px
+  width: 501px
   margin: 25px auto 0
   padding-left: 10px
   transition: 0.3s
@@ -12,4 +12,50 @@
   &:hover
     transition: 0.3s
 
+.buttons
+  display: flex
+  justify-content: center
 
+.btnFilter
+  width: 167px
+  border-left: #4b0082 3px solid
+  border-bottom: #4b0082 3px solid
+  border-right: #4b0082 3px solid
+  background: none
+  border-top: none
+  transition: 0.35s
+  &:hover
+    transition: 0.35s
+    background: #4b0082
+    color: white
+
+.btnFilter:first-child
+  width: 167px
+  border-left: #4b0082 3px solid
+  border-bottom: #4b0082 3px solid
+  background: none
+  border-right: none
+  border-top: none
+  &:hover
+    transition: 0.35s
+    background: #4b0082
+    color: white
+
+.btnFilter:last-child
+  width: 167px
+  border-left: none
+  border-bottom: #4b0082 3px solid
+  border-right: #4b0082 3px solid
+  background: none
+  border-top: none
+  &:hover
+    transition: 0.35s
+    background: #4b0082
+    color: white
+
+.activeFilter
+  border: #4b0082 3px solid
+  pointer-events: none
+  width: 167px
+  background: #4b0082
+  color: white

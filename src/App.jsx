@@ -9,7 +9,6 @@ export function App() {
         <>
 
             <Header/>
-            <Search/>
             <Main/>
             <Footer/>
         </>

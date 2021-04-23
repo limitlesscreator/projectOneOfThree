@@ -5,7 +5,7 @@ export function Movies(props) {
     const {movies} = props
     return (
         <div className={s.flexMovie}>
-            {movies.map(movie => <Movie key={movie.imdbID} {...movie}/>)}
+            {movies.map(movie => <Movie key={movie.imdbID} {...movie} />)}
         </div>
     )
 }
