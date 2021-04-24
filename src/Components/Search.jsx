@@ -3,17 +3,27 @@ import s from './Search.module.sass'
 
 export class Search extends React.Component {
     state = {
-        search: '',
-        filter: 'All'
+        search: 'batman',
+        filterBtn: 'All',
+        filterMovies: ''
     }
 
     handleKey = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && this.state.search.length) {
+            this.setState({filterBtn: 'All'})
             this.props.searchMovies(this.state.search)
         }
     }
     changeFilter = (filterValue) => {
-        this.setState({filter: filterValue})
+        this.setState({filterBtn: filterValue})
+    }
+
+    reFetchButton = (typeMovie) => {
+        if (this.state.search.length){
+            this.setState({filterMovies: 'typeMovie'})
+            this.props.searchMovies(this.state.search,typeMovie)
+        }
+
     }
 
     render() {
@@ -28,9 +38,9 @@ export class Search extends React.Component {
                            onKeyDown={this.handleKey}
                     />
                     <div className={s.buttons}>
-                        <button onClick={() => {this.changeFilter('All')}} className={this.state.filter === "All" ? s.activeFilter : s.btnFilter}>All</button>
-                        <button onClick={() => {this.changeFilter('Movies')}} className={this.state.filter === "Movies" ? s.activeFilter : s.btnFilter}>Movies</button>
-                        <button onClick={() => {this.changeFilter('Series')}} className={this.state.filter === "Series" ? s.activeFilter : s.btnFilter}>Series</button>
+                        <button onClick={() => {this.changeFilter('All');;this.reFetchButton('')}} className={this.state.filterBtn === "All" ? s.activeFilter : s.btnFilter}>All</button>
+                        <button onClick={() => {this.changeFilter('Movies');this.reFetchButton('type=movie')}} className={this.state.filterBtn === "Movies" ? s.activeFilter : s.btnFilter}>Movies</button>
+                        <button onClick={() => {this.changeFilter('Series');this.reFetchButton('type=series')}} className={this.state.filterBtn === "Series" ? s.activeFilter : s.btnFilter}>Series</button>
                     </div>
 
                 </div>
