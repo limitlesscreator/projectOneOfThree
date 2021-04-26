@@ -1,50 +1,45 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import s from './Search.module.sass'
 
-export class Search extends React.Component {
-    state = {
-        search: 'batman',
-        filterBtn: 'All',
-        filterMovies: ''
-    }
+export function Search(props){
+    let [search,setSearch] = useState('batman')
+    let [filterBtn,setFilterBtn] = useState("All")
+    let [filterMovies,setFilterMovies] = useState("")
 
-    handleKey = (e) => {
-        if (e.key === 'Enter' && this.state.search.length) {
-            this.setState({filterBtn: 'All'})
-            this.props.searchMovies(this.state.search)
+    const handleKey = (e) => {
+        if (e.key === 'Enter' && search.length) {
+            setFilterBtn("All")
+            props.searchMovies(search)
         }
     }
-    changeFilter = (filterValue) => {
-        this.setState({filterBtn: filterValue})
+    const changeFilter = (filterValue) => {
+        setFilterBtn(filterValue)
     }
 
-    reFetchButton = (typeMovie) => {
-        if (this.state.search.length){
-            this.setState({filterMovies: 'typeMovie'})
-            this.props.searchMovies(this.state.search,typeMovie)
+    const reFetchButton = (typeMovie) => {
+        if (search.length){
+            setFilterBtn('typeMovie')
+            props.searchMovies(search,typeMovie)
         }
 
     }
-
-    render() {
         return (
             <>
                 <div>
                     <input type="search"
                            placeholder={'search'}
                            className={s.search}
-                           value={this.state.search}
-                           onChange={(e) => this.setState({search: e.target.value})}
-                           onKeyDown={this.handleKey}
+                           value={search}
+                           onChange={(e) => setSearch(e.target.value)}
+                           onKeyDown={handleKey}
                     />
                     <div className={s.buttons}>
-                        <button onClick={() => {this.changeFilter('All');;this.reFetchButton('')}} className={this.state.filterBtn === "All" ? s.activeFilter : s.btnFilter}>All</button>
-                        <button onClick={() => {this.changeFilter('Movies');this.reFetchButton('type=movie')}} className={this.state.filterBtn === "Movies" ? s.activeFilter : s.btnFilter}>Movies</button>
-                        <button onClick={() => {this.changeFilter('Series');this.reFetchButton('type=series')}} className={this.state.filterBtn === "Series" ? s.activeFilter : s.btnFilter}>Series</button>
+                        <button onClick={() => {changeFilter('All');reFetchButton('')}} className={filterBtn === "All" ? s.activeFilter : s.btnFilter}>All</button>
+                        <button onClick={() => {changeFilter('Movies');reFetchButton('type=movie')}} className={filterBtn === "Movies" ? s.activeFilter : s.btnFilter}>Movies</button>
+                        <button onClick={() => {changeFilter('Series');reFetchButton('type=series')}} className={filterBtn === "Series" ? s.activeFilter : s.btnFilter}>Series</button>
                     </div>
 
                 </div>
             </>
         )
-    }
 }
