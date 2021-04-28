@@ -18,7 +18,6 @@ export function Search(props){
 
     const reFetchButton = (typeMovie) => {
         if (search.length){
-            setFilterBtn('typeMovie')
             props.searchMovies(search,typeMovie)
         }
 

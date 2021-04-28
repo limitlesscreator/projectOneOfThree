@@ -1,11 +1,27 @@
 header
-    height: 100px
-    background: #372454
+    height: 110px
+    background: #c3bc00
     display: flex
     justify-content: center
     align-items: center
+    position: relative
+    background: url("https://i.pinimg.com/originals/13/58/ff/1358ffe307c7c58b801440fb0389a793.jpg")
+    //background-size: cover
 
-h1
-    text-align: center
+.marvel
+    width: 300px
+    background: #000
+    height: 300px
     color: white
-    text-transform: uppercase
+    position: absolute
+    top: -150px
+    border-radius: 50%
+    background: url("https://pngimg.com/uploads/captain_america/captain_america_PNG85.png")
+    background-repeat: no-repeat
+    background-position: 50%
+    background-size: cover
+    transition: .5s
+    &:hover
+        transition: .5s
+        transform: rotate(-180deg)
+
